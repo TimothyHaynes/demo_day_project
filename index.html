@@ -5,17 +5,20 @@
   <title>Todos $http</title>
   <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
   <script src="app.js" charset="utf-8"></script>
+
 </head>
 <body  ng-app="myApp">
   <div ng-controller="myCtrl1">
     <ul>
       <li ng-repeat="item in items">
-        {{item.data}}
+        {{item.company}}
+        {{item.jobTitle}}
+        {{item.location}}
       </li>
     </ul>
   </div>
 
-  <div ng-controller="myCtrl2">
+  <!-- <div ng-controller="myCtrl2">
     <ul>
       <li ng-repeat="item in items">
         {{item.title}}
@@ -29,7 +32,7 @@
         {{item.data}}
       </li>
     </ul>
-  </div>
+  </div> -->
 
 
 

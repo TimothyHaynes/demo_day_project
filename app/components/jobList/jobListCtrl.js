@@ -1,5 +1,7 @@
 var app = angular.module('myApp');
 app.controller("jobListCtrl", function($http, $scope) {
+    $scope.searchObject = inputFactory.returnObject();
+    console.log($scope.searchObject);
     $http({
         method: 'GET',
         url: 'http://service.dice.com/api/rest/jobsearch/v1/simple.json?city=48207&direct=1&state=MI'
@@ -11,3 +13,7 @@ app.controller("jobListCtrl", function($http, $scope) {
             console.log(response);
         });
 });
+
+// app.controller('searchOutputCtrl', function($scope, inputFactory) {
+
+// });

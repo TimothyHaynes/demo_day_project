@@ -1,0 +1,9 @@
+#search {
+  margin: 0 auto;
+  text-align: center;
+}
+form button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+}

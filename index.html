@@ -2,13 +2,15 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>#</title>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
-<body>
+  <title>UnCommuter</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4-nphLysUEQAFeNFzp3bEmh3Qde0HwJk&callback=initMap"></script>
 
+
+</head>
+<body  ng-app="myApp">
   <header>
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
@@ -23,38 +25,27 @@
 			</div>
 		</nav>
 	</header>
-<!-- <body  ng-app="projectApp">
-  <div ng-controller="jobsCtrl">
-    <ul>
-      <li ng-repeat="item in items">
-        {{item.data}}
-      </li>
-    </ul>
-  </div>
+  <ng-view>
 
-  <div ng-controller="mapsCtrl">
-    <ul>
-      <li ng-repeat="item in items">
-        {{item.title}}
-      </li>
-    </ul>
-  </div>
+  </ng-view>
 
-  <div ng-controller="myCtrl3">
-    <ul>
-      <li ng-repeat="item in items">
-        {{item.data}}
-      </li>
-    </ul>
-  </div> -->
+
+   <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+   <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+   <script src="js/app.js" charset="utf-8"></script>
+   <script src="js/jobListCtrl.js" charset="utf-8"></script>
+   <script src="js/map.js" charset="utf-8"></script>
+   <!-- <script src="js/jobsController.js" charset="utf-8"></script>
+   <script src="js/defaultMapController.js" charset="utf-8"></script> -->
 
 
 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-  <script src="js/app.js" charset="utf-8"></script>
-  <script src="js/searchController.js" charset="utf-8"></script>
+
+
+
+  <!-- <script src="js/searchController.js" charset="utf-8"></script>
   <script src="js/jobsController.js" charset="utf-8"></script>
-  <script src="js/defaultMapController.js" charset="utf-8"></script>
+  <script src="js/defaultMapController.js" charset="utf-8"></script> -->
 </body>
+
 </html>

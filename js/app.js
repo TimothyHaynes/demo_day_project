@@ -1,4 +1,4 @@
-var app = angular.module('projectApp', ['ngRoute']);
+var app = angular.module('myApp', ["ngRoute"]);
 
 app.config(function($routeProvider) {
     $routeProvider
@@ -7,7 +7,7 @@ app.config(function($routeProvider) {
             templateUrl: "partials/view1.html"
         })
         .when('/view2', {
-            controller: "defaultMapCtrl",
+            controller: "jobListCtrl",
             templateUrl: "partials/view2.html"
         })
         .when('/view3', {
@@ -15,17 +15,3 @@ app.config(function($routeProvider) {
             templateUrl: "partials/view3.html"
         });
 });
-
-
-// app.controller("addressCtrl", function($http, $scope) {
-//     $http({
-//         method: 'GET',
-//         url: ''
-//     }).then(function successCallback(response) {
-//             $scope.map = response.data.#;
-//             console.log($scope.items);
-//         },
-//         function errorCallback(response) {
-//             console.log(response);
-//         });
-// });

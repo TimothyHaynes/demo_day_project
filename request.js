@@ -26,7 +26,9 @@ module.exports = function redditInfo(options, callback){
     res.setEncoding('utf8');
     res.on('data', (chunk) => {
       body += chunk;
-      callback(body);
+      // var parsed = JSON.parse(body);
+      // parsed.then(callback(parsed));
+      // callback(parsed);
       // console.log("body: " + body);
       // console.log(`BODY: ${chunk}`);
     });
@@ -35,6 +37,7 @@ module.exports = function redditInfo(options, callback){
         // console.log(JSON.parse(body).data.children[0]);
         const data = JSON.parse(body);
         // return body;
+        callback(data);
       } catch (er) {
         res.statusCode = 400;
         // return res.end('error: ${er.message}')
@@ -44,7 +47,7 @@ module.exports = function redditInfo(options, callback){
       // console.log('No more data in response.');
 
     });
-    console.log("my sexy body: " + body)
+    // console.log("my sexy body: " + body)
     // return body;
   }).end();
   //

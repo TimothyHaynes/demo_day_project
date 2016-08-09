@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/TimothyHaynes/demo_day_project#readme",
   "dependencies": {
-    "express": "~4.5.1",
-    "mongoose": "~3.8.0",
+    "angular-google-maps": "^2.3.3",
     "body-parser": "~1.4.2",
-    "method-override": "~2.0.2"
+    "express": "~4.5.1",
+    "method-override": "~2.0.2",
+    "mongoose": "~3.8.0"
   },
   "devDependencies": {
     "browser-sync": "^2.14.0",

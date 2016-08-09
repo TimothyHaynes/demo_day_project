@@ -1,7 +1,8 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var request = require('./request.js');
+var r = require('./request');
+var http = require('http');
 
 //configure app to use bodyParser()
 //this will let us get data from POST
@@ -14,16 +15,6 @@ var port = process.env.PORT || 8080; //set our PORT
 
 //Routes for API
 //==============
-var router = express.Router();
-
-router.get('/', function(req, res) {
-  res.json({ message: 'hooray! welcome to our api!' });
-});
-
-router.get('/reddit', function(req, res) {
-  res.json(request(reddit))
-})
-//we will add more API routes here
 var reddit = {
   hostname: 'www.reddit.com',
   host: 'www.reddit.com',
@@ -35,7 +26,21 @@ var reddit = {
     // 'Content-Length': Buffer.byteLength(getData)
   }
 };
-console.log(request(reddit));
+var router = express.Router();
+
+router.get('/', function(req, res) {
+  res.json({ message: 'hooray! welcome to our api!' });
+});
+
+router.get('/reddit', function(req, res) {
+  r(reddit, function(result) {
+    var jsonified = JSON.parse(result);
+    res.json(jsonified);
+  });
+});
+//we will add more API routes here
+
+// console.log(request(reddit));
 //REGISTER OUR ROUTES
 //all of our routes will be prefixed with /API
 app.use('/api', router);

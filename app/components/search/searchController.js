@@ -3,14 +3,17 @@ var app = angular.module('myApp');
 app.controller("searchCtrl", function($http, $scope) {
     $scope.search = function() {
 
-      var zipcode = $scope.zipcode;
+      var zipcode = {'city': "" + $scope.zipcode};
       console.log(zipcode);
-      $http({
-          method: 'POST',
-          url: 'http://localhost:8080/api/jobs',
-          data: {'zipcode': zipcode}
-      }).then(function successCallback(response) {
-              $scope.items = response.data.resultItemList
+      // var string = "" + zipcode;
+      $http.post('http://localhost:8080/api/jobs', zipcode)
+      // ({
+      //     method: 'POST',
+      //     url: 'http://localhost:8080/api/jobs',
+      //     data: {'zipcode': string}
+      // })
+      .then(function successCallback(response) {
+              $scope.items = response.data
               // $scope.job = response.data.#;
               console.log($scope.items);
           },

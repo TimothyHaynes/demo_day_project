@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var r = require('./request');
 var http = require('http');
+var diceCreate = require('./diceCreate');
 
 //configure app to use bodyParser()
 //this will let us get data from POST
@@ -52,20 +53,22 @@ var router = express.Router();
 
 router.get('/', function(req, res) {
 
-  var zip = req;
-  console.log(zip);
+  // var zip = req;
+  // console.log(zip);
   res.json({ message: 'hooray! welcome to our api!' });
 });
 
-router.get('/jobs', function(req, res) {
-  console.log(req);
-  res.json({message: 'hooray! we live.'})
-})
+router.post('/jobs', function(req, res) {
+  var dice = diceCreate(req.body);
+  r(dice, function(result) {
+    res.json(result);
+  });
+});
 
 router.get('/reddit', function(req, res) {
   r(reddit, function(result) {
     // var jsonified = JSON.parse(result);
-    console.log("Resulting: " + result);
+    // console.log("Resulting: " + result);
     res.json(result);
 
   });

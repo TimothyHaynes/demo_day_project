@@ -20,5 +20,5 @@ app.controller("searchCtrl", function($http, $scope) {
     //       function errorCallback(response) {
     //           console.log(response);
     //       });
-    // }
+    }
 });

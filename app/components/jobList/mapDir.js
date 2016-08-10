@@ -1,6 +1,6 @@
 app.directive('map', function() {
     return {
         restrict: 'AE',
-        templateUrl: 'templates/map.html',
+        templateUrl: 'app/components/jobList/map.html',
     };
 });

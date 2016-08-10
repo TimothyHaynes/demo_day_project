@@ -49,11 +49,14 @@ var reddit = {
 var router = express.Router();
 
 router.get('/', function(req, res) {
+  var zip = req;
+  console.log(zip);
   res.json({ message: 'hooray! welcome to our api!' });
 });
 
 router.get('/jobs', function(req, res) {
   console.log(req);
+  res.json({message: 'hooray! we live.'})
 })
 
 router.get('/reddit', function(req, res) {

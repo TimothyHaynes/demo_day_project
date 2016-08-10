@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //parses json
 app.use(bodyParser.json());
 
+
 // Add headers
 app.use(function (req, res, next) {
 
@@ -31,6 +32,7 @@ app.use(function (req, res, next) {
     next();
 });
 
+
 var port = process.env.PORT || 8080; //set our PORT
 
 //Routes for API
@@ -49,6 +51,7 @@ var reddit = {
 var router = express.Router();
 
 router.get('/', function(req, res) {
+
   var zip = req;
   console.log(zip);
   res.json({ message: 'hooray! welcome to our api!' });
@@ -64,6 +67,7 @@ router.get('/reddit', function(req, res) {
     // var jsonified = JSON.parse(result);
     console.log("Resulting: " + result);
     res.json(result);
+
   });
 });
 //we will add more API routes here
@@ -72,7 +76,6 @@ router.get('/reddit', function(req, res) {
 //REGISTER OUR ROUTES
 //all of our routes will be prefixed with /API
 app.use('/api', router);
-
 
 
 //START THE server

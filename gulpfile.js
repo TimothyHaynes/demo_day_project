@@ -11,6 +11,7 @@ var connect = require('gulp-connect');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var browserSync = require('browser-sync').create();
+var nodemon = require('gulp-nodemon');
 
 gulp.task('serve', ['sass'], function() {
 
@@ -21,6 +22,14 @@ gulp.task('serve', ['sass'], function() {
     });
 
     gulp.watch("assets/build/*.css").on('change', browserSync.reload);
+});
+
+gulp.task('start', function () {
+  nodemon({
+    script: 'server.js'
+  , ext: 'js html'
+  , env: { 'NODE_ENV': 'development' }
+});
 });
 
 // gulp.task('connect', function() {
@@ -63,7 +72,7 @@ gulp.task('styles', function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('default', ['serve','lint','sass', 'scripts', 'styles'], function() {
+gulp.task('default', ['start','lint','sass', 'scripts', 'styles'], function() {
 
 });
 gulp.watch('./assets/css/**/*.css', ['styles']);

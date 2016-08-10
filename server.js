@@ -11,7 +11,7 @@ var diceCreate = require('./diceCreate');
 app.use(bodyParser.urlencoded({ extended: true }));
 //parses json
 app.use(bodyParser.json());
-
+app.use('/', express.static(__dirname + '/public'));
 
 // Add headers
 app.use(function (req, res, next) {
@@ -51,12 +51,12 @@ var reddit = {
 };
 var router = express.Router();
 
-router.get('/', function(req, res) {
-
-  // var zip = req;
-  // console.log(zip);
-  res.json({ message: 'hooray! welcome to our api!' });
-});
+// router.get('/', function(req, res) {
+//
+//   // var zip = req;
+//   // console.log(zip);
+//   // res.json({ message: 'hooray! welcome to our api!' });
+// });
 
 router.post('/jobs', function(req, res) {
   var dice = diceCreate(req.body);

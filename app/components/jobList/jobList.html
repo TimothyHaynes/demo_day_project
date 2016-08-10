@@ -1,10 +1,8 @@
 <!DOCTYPE html>
+<div id="job-map">
 
-
+</div>
 <div ng-controller="jobListCtrl">
-	<div id="job-map">
-
-	</div>
 	<ul>
 		<li ng-repeat="item in items">
 			{{item.company}}
@@ -14,10 +12,12 @@
 	</ul>
 </div>
 
+<div ng-controller="searchOutputCtrl">
+	{{searchOutput.zipcode}}
+	{{searchOutput.job_title}}
+	{{searchOutput.street_address}}
+</div>
 
-	{{searchInput.streetAddress}}
-	<!-- {{searchObject.jobTitle}}
-	{{searchObject.zipcode}} -->
 
 
 <!-- this is our map with the markers for the area near their address and list of job postings-->

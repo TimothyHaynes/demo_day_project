@@ -1,10 +1,16 @@
 <section id="search" ng-controller="searchCtrl">
   <h1>Uncommuter</h1>
   <form>
-    <input type="text" placeholder="Street Address" ng-model="addressInput"/>
+<!--for use with express query-->
+    <!-- <input type="text" placeholder="Street Address" ng-model="addressInput"/>
     <input type="text" placeholder="Job Keyword" ng-model="jobInput"/>
     <input type="number" placeholder="Zipcode" ng-model="zipcode"/>
-    <button type="button" ng-click="search()">Uncommute</button>
+    <button type="button" ng-click="search()">Uncommute</button> -->
+
+    <input type="text" placeholder="Street Address" ng-model="searchInput.street_address"/>
+    <input type="text" placeholder="Job Keyword" ng-model="searchInput.job_title"/>
+    <input type="number" placeholder="Zipcode" ng-model="searchInput.zipcode"/>
+    <button type="button" ng-click="submitFunc(searchInput)">Uncommute</button>
   </form>
 </section>
 

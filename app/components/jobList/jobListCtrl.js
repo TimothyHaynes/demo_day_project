@@ -1,5 +1,5 @@
 var app = angular.module('myApp');
-app.controller("jobListCtrl", function($http, $scope) {
+app.controller("jobListCtrl", function($http, $scope, inputFactory) {
    $scope.searchObject = inputFactory.returnObject();
    console.log($scope.searchObject);
    $http({

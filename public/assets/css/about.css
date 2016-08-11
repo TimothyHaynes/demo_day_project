@@ -1,0 +1,8 @@
+.row-fluid ul {
+  list-style-type: none; }
+
+.thumbnail h3, p {
+  text-align: center; }
+
+.thumbnail img {
+  border-radius: 150px; }

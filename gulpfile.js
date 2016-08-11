@@ -21,7 +21,7 @@ gulp.task('serve', ['sass'], function() {
         }
     });
 
-    gulp.watch("assets/build/*.css").on('change', browserSync.reload);
+    gulp.watch("public/assets/build/*.css").on('change', browserSync.reload);
 });
 
 gulp.task('start', function () {
@@ -37,9 +37,9 @@ gulp.task('start', function () {
 // });
 
 gulp.task('sass', function () {
-  return gulp.src('./assets/css/scss/**/*.scss')
+  return gulp.src('./public/assets/css/scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./assets/css/'));
+    .pipe(gulp.dest('./public/assets/css/'));
 });
 
 // gulp.task('sass:watch', function () {
@@ -48,34 +48,34 @@ gulp.task('sass', function () {
 
 // JS concat, strip debugging and minify
 gulp.task('scripts', function() {
-  gulp.src(['./assets/js/**/*.js','./js/**/*.js'])
+  gulp.src(['./public/assets/js/**/*.js','./js/**/*.js'])
     .pipe(concat('script.js'))
     .pipe(stripDebug())
     .pipe(uglify())
-    .pipe(gulp.dest('./assets/build/'));
+    .pipe(gulp.dest('./public/assets/build/'));
 });
 
 // JSHint checks code for errors
 gulp.task('lint', function() {
-  return gulp.src('./assets/js/**/*.js')
+  return gulp.src('./public/assets/js/**/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter(stylish));
 });
 
 // CSS concat, auto-prefix and minify
 gulp.task('styles', function() {
-  gulp.src(['./assets/css/**/*.css'])
+  gulp.src(['./public/assets/css/**/*.css'])
     .pipe(concat('styles.css'))
     .pipe(autoprefix('last 2 versions'))
     .pipe(minifyCSS())
-    .pipe(gulp.dest('./assets/build/'))
+    .pipe(gulp.dest('./public/assets/build/'))
     .pipe(browserSync.stream());
 });
 
 gulp.task('default', ['start','lint','sass', 'scripts', 'styles'], function() {
 
 });
-gulp.watch('./assets/css/**/*.css', ['styles']);
-gulp.watch('./assets/css/scss/**/*.scss', ['sass']);
+gulp.watch('./public/assets/css/**/*.css', ['styles']);
+gulp.watch('./public/assets/css/scss/**/*.scss', ['sass']);
 
-gulp.watch('./assets/js/**/*.js', ['lint', 'scripts']);
+gulp.watch('./public/assets/js/**/*.js', ['lint', 'scripts']);

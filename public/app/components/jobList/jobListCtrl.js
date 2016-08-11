@@ -18,6 +18,7 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
     doTheMap();});
   // .then(()=>{$scope.diceData = diceFactory.data()});
   console.log($scope.diceData);
+
     $scope.globalMap;
     $scope.service;
     $scope.geocoder;
@@ -57,6 +58,7 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
     function getCenter() {
         //takes user input and centers the map on the selcted location
         chooseCenterParam();
+        console.log("search will center on: " + $scope.searchCenter);
         $scope.geocoder = new google.maps.Geocoder();
         $scope.geocoder.geocode({
             address: $scope.searchCenter,

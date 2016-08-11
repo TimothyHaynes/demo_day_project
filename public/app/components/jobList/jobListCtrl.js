@@ -102,7 +102,6 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
       var thisId={};
         $scope.service = new google.maps.places.PlacesService($scope.globalMap);
         //for each item returned by the DICE API...
-<<<<<<< HEAD
             var thisThingThatIsNotAnotherThing = function(location){
               console.log("the one with a ridiculous name starts");
               console.log('Hello');

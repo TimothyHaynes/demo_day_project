@@ -4,7 +4,7 @@ var app = angular.module('myApp');
 app.controller("searchCtrl", function($scope, inputFactory, $location) {
     $scope.submitFunc = function(searchInput) {
         inputFactory.saveObject(searchInput);
-        console.log(searchInput);
+        //console.log(searchInput);
         $location.path('/jobList');
     };
 
@@ -12,7 +12,7 @@ app.controller("searchCtrl", function($scope, inputFactory, $location) {
 
 app.controller("searchOutputCtrl", function($scope, inputFactory) {
     $scope.searchOutput = inputFactory.returnObject();
-    console.log($scope.searchOutput);
+    //console.log($scope.searchOutput);
 });
 
 //does this actually need to do anything? Maybe send info to the factory?

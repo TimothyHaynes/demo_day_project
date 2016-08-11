@@ -1,7 +1,7 @@
 var app = angular.module('myApp');
 app.controller("jobListCtrl", function($http, $scope, inputFactory) {
    $scope.searchObject = inputFactory.returnObject();
-   console.log($scope.searchObject);
+   //console.log($scope.searchObject);
    $http({
        method: 'GET',
        url: 'http://service.dice.com/api/rest/jobsearch/v1/simple.json?city=48207&direct=1&state=MI'
@@ -51,6 +51,7 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory) {
     function getCenter() {
         //takes user input and centers the map on the selcted location
         chooseCenterParam();
+        console.log("search will center on: " + $scope.searchCenter);
         $scope.geocoder = new google.maps.Geocoder();
         $scope.geocoder.geocode({
             address: $scope.searchCenter,

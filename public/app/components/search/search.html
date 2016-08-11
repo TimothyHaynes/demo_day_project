@@ -8,9 +8,11 @@
     <button type="button" ng-click="search()">Uncommute</button> -->
 
     <input type="text" placeholder="Street Address" ng-model="searchInput.street_address"/>
-    <input type="text" placeholder="Job Keyword" ng-model="searchInput.job_title"/>
-    <input type="text" placeholder="Zipcode" ng-model="searchInput.zipcode"/>
-    <button type="button" ng-click="submitFunc(searchInput)">Uncommute</button>
+
+    <input type="text" placeholder="Job Keyword" ng-model="searchInput.skill"/>
+    <input type="text" placeholder="Zipcode" ng-model="searchInput.city"/>
+    <button type="button" ng-click="search(searchInput)">Uncommute</button>
+
   </form>
 </section>
 

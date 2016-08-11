@@ -16,13 +16,14 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
   diceFactory.post($scope.searchObject, (response)=>{
     console.log(response);
     $scope.items = response.resultItemList;
-    doTheMap();});
+    doTheMap();
+  });
   // .then(()=>{$scope.diceData = diceFactory.data()});
-  console.log($scope.diceData);
-
-    $scope.globalMap;
-    $scope.service;
-    $scope.geocoder;
+  // console.log($scope.diceData);
+    //
+    // $scope.globalMap;
+    // $scope.service;
+    // $scope.geocoder;
 
    function initMap(){
     console.log("init Map starts");
@@ -44,14 +45,15 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
 
 
     $scope.searchCenter = chooseCenterParam();
+    $scope.detailedMapsInfo = [];
 
     function chooseCenterParam(){
         //only uses the stret address as the center if it was provided
         console.log("chooseCenterParam starts");
         if ($scope.searchObject.street_address !== undefined){
-            return $scope.searchObject.street_address + " " + $scope.searchObject.zipcode;
+            return $scope.searchObject.street_address + " " + $scope.searchObject.city;
         }
-        return $scope.searchObject.zipcode;
+        return $scope.searchObject.city;
     }
 
 
@@ -64,7 +66,7 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
             address: $scope.searchCenter,
             componentRestrictions: {
                 country: 'US',
-                postalCode: $scope.searchObject.zipcode
+                postalCode: $scope.searchObject.city
             }
         }, function(results, status) {
           console.log("get center callback starts");
@@ -116,32 +118,35 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
                    thisId = results[0].place_id
                   }
                 });
+                console.log("thisId: " + thisId);
                         //Make another request to places********
                 $scope.service.getDetails({placeId: thisId}, function(place, status){
-                  console.log("getDetails status: "+status);
+                  // console.log("getDetails status: " + status);
                     if (status ==  google.maps.places.PlacesServiceStatus.OVER_QUERY_LIMIT){
                       setTimeout(1000);
                     }
                     else if (status == google.maps.places.PlacesServiceStatus.OK) {
                         $scope.detailedMapsInfo.push(place);
-                        console.log($scope.detailedMapsInfo);
-                        console.log(place);
+                        // console.log($scope.detailedMapsInfo);
+                        // console.log(place);
                         addMarker(place);
 
 
                     }//
                 });
               }
+              var i = 0;
+          var testInterval = setInterval(function nextOne() {
 
-          setInterval(function nextOne() {
-            var i = 0;
             console.log("next one is called!");
-            while( i < 1) {
+            if( i < 20) {
               console.log("next one if statement, i="+i);
               thisThingThatIsNotAnotherThing($scope.items[i]);
+              i++;
+            } else {clearInterval(testInterval);}
 
-            }
-            i++
+
+
           }, 1000);
 
       };

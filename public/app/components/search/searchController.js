@@ -1,7 +1,7 @@
 var app = angular.module('myApp');
 //this controller will be requesting data from the API
 
-<<<<<<< HEAD
+
 // app.controller("searchCtrl", function($scope, inputFactory, $location) {
 //     $scope.submitFunc = function(searchInput) {
 //         inputFactory.saveObject(searchInput);
@@ -14,20 +14,7 @@ var app = angular.module('myApp');
 app.controller("searchOutputCtrl", function($scope, inputFactory) {
     $scope.searchOutput = inputFactory.returnObject().toJson;
     console.log($scope.searchOutput);
-=======
-app.controller("searchCtrl", function($scope, inputFactory, $location) {
-    $scope.submitFunc = function(searchInput) {
-        inputFactory.saveObject(searchInput);
-        //console.log(searchInput);
-        $location.path('/jobList');
-    };
 
-});
-
-app.controller("searchOutputCtrl", function($scope, inputFactory) {
-    $scope.searchOutput = inputFactory.returnObject();
-    //console.log($scope.searchOutput);
->>>>>>> 4c63ae10fa109039a976b9169de126cb6ea6b272
 });
 
 //does this actually need to do anything? Maybe send info to the factory?

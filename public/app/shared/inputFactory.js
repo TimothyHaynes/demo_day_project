@@ -7,12 +7,12 @@ app.factory('inputFactory', function() {
     // --> user input is being stored here
     function saveObject(searchInput) {
         initial = searchInput;
-        console.log(initial);
+        //console.log(initial);
     }
 
     //returns the object of the passed through info from the page
     function returnObject() {
-        console.log(initial);
+        //console.log(initial);
         return initial;
     }
 

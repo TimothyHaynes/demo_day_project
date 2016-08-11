@@ -57,13 +57,25 @@ var router = express.Router();
 //   // console.log(zip);
 //   // res.json({ message: 'hooray! welcome to our api!' });
 // });
+{ let resp;
+  router.post('/jobs', function(req, res) {
+    var body = req.body;
+    console.log("req.body:" + req.body);
+    if(Object.keys(body).length === 0) {
+      res.json(resp);
+    } else {
+      console.log("object is not empty");
+      var dice = diceCreate(req.body);
+      console.log(dice);
+      r(dice, function(result) {
+        resp = result;
+        res.json(result);
+      });
+  };
+    // if (body.keys(obj) !== 0) {}
 
-router.post('/jobs', function(req, res) {
-  var dice = diceCreate(req.body);
-  r(dice, function(result) {
-    res.json(result);
   });
-});
+}
 
 router.get('/reddit', function(req, res) {
   r(reddit, function(result) {

@@ -14,5 +14,3 @@ app.controller("searchOutputCtrl", function($scope, inputFactory) {
     $scope.searchOutput = inputFactory.returnObject();
     console.log($scope.searchOutput);
 });
-
-//does this actually need to do anything? Maybe send info to the factory?

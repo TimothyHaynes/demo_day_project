@@ -65,7 +65,7 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
         });
     }
 
-    function addMarker(place){
+    function addMarker(place, location){
       console.log("addMarker starts");
         var marker = new google.maps.Marker({
             map: $scope.globalMap,
@@ -78,6 +78,10 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
         });
         marker.addListener('click', function(){
           console.log('You Clicked Me! Yay!!!!');
+          $scope.modalInfo = location.location + " " + location.company;
+          // var stuffInModal = angular.element(document.querySelector('#modal'));
+          // stuffInModal.append($scope.modalInfo);
+          console.log($scope.modalInfo);
           //save job title, company name, and link.
           //save address
         });
@@ -124,7 +128,7 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
                         i++;
                         $scope.detailedMapsInfo.push(place);
                         console.log("place: " + place.geometry.location);
-                        addMarker(place);
+                        addMarker(place, location);
                     }
                 });
             }
@@ -151,6 +155,7 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
     }
 
 });
+
 
 // app.controller('searchOutputCtrl', function($scope, inputFactory) {
 

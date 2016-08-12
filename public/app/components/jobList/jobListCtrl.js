@@ -3,27 +3,13 @@ var app = angular.module('myApp');
 app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory) {
    $scope.searchObject = inputFactory.returnObject();
    console.log($scope.searchObject);
-  //  $http({
-  //      method: 'GET',
-  //      url: 'http://service.dice.com/api/rest/jobsearch/v1/simple.json?city=48207&direct=1&state=MI'
-  //  }).then(function successCallback(response) {
-  //          $scope.items = response.data.resultItemList;
-  //          doTheMap();
-  //      },
-  //      function errorCallback(response) {
-  //          console.log(response);
-  //      });
-  diceFactory.post($scope.searchObject, (response)=>{
+
+   diceFactory.post($scope.searchObject, (response)=>{
     console.log(response);
-    $scope.items = response.resultItemList;
+    $scope.items = response.result.resultItemList;
+    $scope.searchObject = response.body;
     doTheMap();
   });
-  // .then(()=>{$scope.diceData = diceFactory.data()});
-  // console.log($scope.diceData);
-    //
-    // $scope.globalMap;
-    // $scope.service;
-    // $scope.geocoder;
 
    function initMap(){
     console.log("init Map starts");
@@ -102,6 +88,7 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
       console.log("get locations starts");
       // var i = 0;
       var thisId={};
+      var interval = 500;
         $scope.service = new google.maps.places.PlacesService($scope.globalMap);
         //for each item returned by the DICE API...
             var thisThingThatIsNotAnotherThing = function(location){
@@ -111,7 +98,8 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
                 //setting query to values from our input
                 $scope.locationsRequest.query = location.company + " " +location.location;
                 //below: passes the $scope.locationsRequest object as the search parameters
-                //makes request to places********
+
+                //*******makes request to places********
                 $scope.service.textSearch($scope.locationsRequest, function(results, status){
                   console.log("text search status: " + status);
                   if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -119,35 +107,34 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
                   }
                 });
                 console.log("thisId: " + thisId);
-                        //Make another request to places********
+                        //********Make another request to places********
                 $scope.service.getDetails({placeId: thisId}, function(place, status){
-                  // console.log("getDetails status: " + status);
                     if (status ==  google.maps.places.PlacesServiceStatus.OVER_QUERY_LIMIT){
-                      setTimeout(1000);
+                      interval += 20;
+                      console.log('interval: ' + interval);
+                      console.log('over_Query_LImit in getDetails.')
                     }
-                    else if (status == google.maps.places.PlacesServiceStatus.OK) {
+                    else if (status == google.maps.places.PlacesServiceStatus.OK || status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
+                        console.log(i);
+                        i++;
                         $scope.detailedMapsInfo.push(place);
-                        // console.log($scope.detailedMapsInfo);
-                        // console.log(place);
+                        console.log("place: " + place.geometry.location);
                         addMarker(place);
-
-
-                    }//
+                    }
                 });
-              }
+            }
               var i = 0;
           var testInterval = setInterval(function nextOne() {
 
             console.log("next one is called!");
-            if( i < 20) {
+            if( i < $scope.items.length) {
+              setTimeout(()=> {
               console.log("next one if statement, i="+i);
               thisThingThatIsNotAnotherThing($scope.items[i]);
-              i++;
+              console.log(interval);
+            }, interval);
             } else {clearInterval(testInterval);}
-
-
-
-          }, 1000);
+          }, interval);
 
       };
 

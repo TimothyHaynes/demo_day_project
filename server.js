@@ -38,25 +38,8 @@ var port = process.env.PORT || 8080; //set our PORT
 
 //Routes for API
 //==============
-var reddit = {
-  hostname: 'www.reddit.com',
-  host: 'www.reddit.com',
-  port: 80,
-  path: '/.json',
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    // 'Content-Length': Buffer.byteLength(getData)
-  }
-};
 var router = express.Router();
 
-// router.get('/', function(req, res) {
-//
-//   // var zip = req;
-//   // console.log(zip);
-//   // res.json({ message: 'hooray! welcome to our api!' });
-// });
 { let resp;
   router.post('/jobs', function(req, res) {
     var body = req.body;
@@ -68,8 +51,8 @@ var router = express.Router();
       var dice = diceCreate(req.body);
       console.log(dice);
       r(dice, function(result) {
-        resp = result;
-        res.json(result);
+        resp = {result, body};
+        res.json({result, body});
       });
   };
     // if (body.keys(obj) !== 0) {}
@@ -87,7 +70,6 @@ router.get('/reddit', function(req, res) {
 });
 //we will add more API routes here
 
-// console.log(request(reddit));
 //REGISTER OUR ROUTES
 //all of our routes will be prefixed with /API
 app.use('/api', router);

@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
@@ -8,13 +9,15 @@ var diceCreate = require('./diceCreate');
 //configure app to use bodyParser()
 //this will let us get data from POST
 //parses urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 //parses json
 app.use(bodyParser.json());
 app.use('/', express.static(__dirname + '/public'));
 
 // Add headers
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
 
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -38,6 +41,7 @@ var port = process.env.PORT || 8080; //set our PORT
 
 //Routes for API
 //==============
+
 var router = express.Router();
 
 { let resp;
@@ -61,12 +65,12 @@ var router = express.Router();
 }
 
 router.get('/reddit', function(req, res) {
-  r(reddit, function(result) {
-    // var jsonified = JSON.parse(result);
-    // console.log("Resulting: " + result);
-    res.json(result);
+    r(reddit, function(result) {
+        // var jsonified = JSON.parse(result);
+        // console.log("Resulting: " + result);
+        res.json(result);
 
-  });
+    });
 });
 //we will add more API routes here
 

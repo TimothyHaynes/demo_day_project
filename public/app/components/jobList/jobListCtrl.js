@@ -78,7 +78,7 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
         });
         marker.addListener('click', function(){
           console.log('You Clicked Me! Yay!!!!');
-          $scope.modalInfo = location.location + " " + location.company;
+          $scope.modalInfo = location.location + " " + location.company + " " + location.detailUrl;
           // var stuffInModal = angular.element(document.querySelector('#modal'));
           // stuffInModal.append($scope.modalInfo);
           console.log($scope.modalInfo);

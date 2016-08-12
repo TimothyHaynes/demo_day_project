@@ -76,6 +76,11 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
                 scaledSize: new google.maps.Size(10, 17)
             }
         });
+        marker.addListener('click', function(){
+          console.log('You Clicked Me! Yay!!!!');
+          //save job title, company name, and link.
+          //save address
+        });
     }
 
     $scope.locationsRequest = {

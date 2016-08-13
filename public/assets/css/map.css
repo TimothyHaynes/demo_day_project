@@ -12,20 +12,9 @@
   border-radius: 10px;
   margin-left: 20px; }
 
-#modal p, a
-{
+#modal p, a {
   font-family: "Poiret One", cursive;
   font-size: 24px; }
 
-#modal a
-{
-  color: #e74c3c;
-}
-
-#modal h1
-{
-    font-family: "Poiret One", cursive;
-    text-align: center;
-    border-bottom: solid black 2px;
-    background-color: #e74c3c;
-}
+#modal a {
+  color: #e74c3c; }

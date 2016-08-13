@@ -66,7 +66,7 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
         });
     }
 
-    function addMarker(place){
+    function addMarker(place, loc){
       console.log("addMarker starts");
         var marker = new google.maps.Marker({
             map: $scope.globalMap,
@@ -76,6 +76,19 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
                 anchor: new google.maps.Point(10, 10),
                 scaledSize: new google.maps.Size(10, 17)
             }
+        });
+        marker.addListener('click', function(){
+          console.log('You Clicked Me! Yay!!!!');
+          console.log("location: " + loc.location);
+          $scope.$apply(function() {$scope.modalInfo = loc.jobTitle + " " + loc.company + " " + loc.location;
+          $scope.modalLink = loc.detailUrl
+          });
+          $scope.$apply(function() {})
+          // var stuffInModal = angular.element(document.querySelector('#modal'));
+          // stuffInModal.append($scope.modalInfo);
+          console.log($scope.modalInfo);
+          //save job title, company name, and link.
+          //save address
         });
     }
 
@@ -121,7 +134,7 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
                         i++;
                         $scope.detailedMapsInfo.push(place);
                         console.log("place: " + place.geometry.location);
-                        addMarker(place);
+                        addMarker(place, location);
                     }
                 });
             }
@@ -140,32 +153,56 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
 
       };
     //THIS IS THE EXPERIMENTAL GETLOCATIONS FUNCTION
+    var interval
     function getLocations(){
       console.log("results from Dice:"); console.log($scope.items);
       $scope.service = new google.maps.places.PlacesService($scope.globalMap);
       console.log("latlng literal from getLocations: "+$scope.locationsRequest.location);
 
-      for(var i=0; i < 9; i++){
+      //for(var i=0; i <= $scope.items.length; i++){
       //$scope.items.forEach(function(location){
-        console.log( $scope.items[i]);
-        doTheThing($scope.items[i]);
+        (function(){
+          console.log("for reference, $scope.items.length = " +$scope.items.length);
+          var counter = 0;
+          setInterval(function(){
+            if (counter >= $scope.items.length){
+              return
+            };
+            console.log("counter: " + counter)
+            console.log($scope.items[counter]);
+            doTheThing($scope.items[counter]);
+            
+            counter++;
+          },210)
+          
+            clearInterval(interval);
+            
+          
+        })();
+        //setTimeout( function() {
+          //for(var j = 0; j < 9; j++) {
+            
+          //};
+        //}, 1000)
         
         
-      }//end forloop
+      //}//end forloop
     }//end GetLocations experimental
 
-    function doTheThing(location){
+    function doTheThing(loc){
       $scope.service.nearbySearch({
           key: 'AIzaSyCj2K40lPL72J1ageAAVTTMH2w4N78Df74',
           //keyword: location.company,
           location: $scope.locationsRequest.location,
           radius: 10000,
-          name: location.company
+          name: loc.company + " " + loc.location
         }, function(results, status){
-          console.log("nearbySearch results callback status: " + status);
-          console.log("results: "); console.log(results[0]);
-          var place = results[0];
-          addMarker(place);
+          console.log("nearbySearch results callback status for"+loc.company+" "+ loc.location+": " + status);
+          if(status == "OK") {
+            console.log("results: "); console.log(results[0]);
+            var place = results[0];
+            addMarker(place, loc);
+          }
         });
         //console.log("address search for geocoder is:" + location.company + " " + location.location);
         // $scope.geocoder.geocode({
@@ -187,6 +224,7 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
     }
 
 });
+
 
 // app.controller('searchOutputCtrl', function($scope, inputFactory) {
 

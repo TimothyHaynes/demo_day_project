@@ -8,17 +8,15 @@ app.factory('diceFactory', function($http) {
       console.log('posting');
       $http.post('/api/jobs', options)
       .then(function successCallback(response) {
-          console.log('response: ' + response.data);
-            diceResponse = response.data;
-            console.log('diceResponse: ' + diceResponse);
-            callback(diceResponse);
-        },
-        function errorCallback(response) {
-            console.log(response);
-        });
+        diceResponse = response.data;
+        callback(diceResponse);
       },
+      function errorCallback(response) {
+            console.log(response);
+      });
+    },
     data: function() {
       return diceResponse;
     }
   }
-})
+});

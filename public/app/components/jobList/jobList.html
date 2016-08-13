@@ -1,15 +1,22 @@
 <!DOCTYPE html>
-<div id="job-map">
+<div id="container">
+	<div class="row" id="something">
+		<div id="job-map" class="col-sm-9">
 
+		</div>
+
+
+		<div id="modal" class="col-sm-3">
+				<h1>Job information</h1>
+			<p>{{ modalJob }}
+			<br>{{modalCompany}}
+			<br>{{modalLocation}}</p>
+			<a href="{{modalLink}}" target="_blank">Apply Here!</a>
+		</div>
+	</div>
 </div>
-<div id="modal">
-	hello
-	<p>{{ modalInfo }}</p>
-	<a href="{{ modalLink }}">Apply Here!</a>
-	goodbye
-</div>
+
 <div>
-
 	<ul>
 		<li ng-repeat="item in items">
 			{{item.company}}

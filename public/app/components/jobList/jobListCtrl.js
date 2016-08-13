@@ -33,8 +33,10 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
     $scope.searchCenter = chooseCenterParam();
     $scope.detailedMapsInfo = [];
 
+
+
     function chooseCenterParam(){
-        //only uses the stret address as the center if it was provided
+        //only uses the street address as the center if it was provided
         console.log("chooseCenterParam starts");
         if ($scope.searchObject.street_address !== undefined){
             return $scope.searchObject.street_address + " " + $scope.searchObject.city;
@@ -59,41 +61,74 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
             if (status == 'OK') {
                 $scope.globalMap.setCenter(results[0].geometry.location);
                 $scope.locationsRequest.location = results[0].geometry.location;
+                $scope.locationsRequest.x = (Math.cos((Math.PI/180) * $scope.locationsRequest.location.lat())*69.172);
+                console.log($scope.locationsRequest.x);
                 console.log("latlng literal from Get Center: "+$scope.locationsRequest.location);
                 $scope.locationsRequest.radius = 4000;
                 getLocations();
             }
         });
     }
+    //funtion containing conditional logic comparing each result to the user input rad property if within limit add marker to page.
+    //itemLat && itemLon = business result place
+
+    //iLat && iLon = location of user input
+    //if (itemLat <= centerLat + rad && iLat >= centerLat - rad && iLon <= centerLon + rad && iLon> centLon - rad) {}
+
+    //Length of 1 degree of Longitude = cosine (latitude) * length of degree (miles) at equator
+
+    //length of 1° of latitude = 1° * 69.172 miles = 69.172 miles
+
+    // scope.locationsRequest.location  (this is the user input center)
+    // 1st calculate the actual length of of lat long here
+    // 2nd then apply that calculation to translate to a radius to conditionally check each result to the defined radius
+    //then place
+
+    function checkRad(place, loc) {
+      var rad = 0;
+      var iLat = place.geometry.location.lat();
+      var iLon = place.geometry.location.lon();
+      var centerLat = loc.location.lat();
+      var centerLon = loc.location.lon();
+      console.log(iLat + centerLat);
+      if (iLat <= centerLat + rad && iLat >= centerLat - rad && iLon <= centerLon + rad && iLon > centLon - rad) {
+        return true;
+      } else {
+        return false;
+      }
+    }
 
     function addMarker(place, loc){
       console.log("addMarker starts");
-        var marker = new google.maps.Marker({
-            map: $scope.globalMap,
-            position: place.geometry.location,
-            icon: {
-                url: 'http://maps.gstatic.com/mapfiles/circle.png',
-                anchor: new google.maps.Point(10, 10),
-                scaledSize: new google.maps.Size(10, 17)
-            }
-        });
-        marker.addListener('click', function(){
-          console.log('You Clicked Me! Yay!!!!');
-          console.log("location: " + loc.location);
-          $scope.$apply(function() {
-            $scope.modalInfo = loc.jobTitle + " " + loc.company + " " + loc.location;
-            $scope.modalLink = loc.detailUrl
-            $scope.modalJob = loc.jobTitle;
-            $scope.modalCompany = loc.company;
-            $scope.modalLocation = loc.location;
+      console.log(place.geometry.location.lat());
+        if (checkRad(place, loc)) {
+          var marker = new google.maps.Marker({
+              map: $scope.globalMap,
+              position: place.geometry.location,
+              icon: {
+                  url: 'http://maps.gstatic.com/mapfiles/circle.png',
+                  anchor: new google.maps.Point(10, 10),
+                  scaledSize: new google.maps.Size(10, 17)
+              }
           });
-          $scope.$apply(function() {})
-          // var stuffInModal = angular.element(document.querySelector('#modal'));
-          // stuffInModal.append($scope.modalInfo);
-          console.log($scope.modalInfo);
-          //save job title, company name, and link.
-          //save address
-        });
+          marker.addListener('click', function(){
+            console.log('You Clicked Me! Yay!!!!');
+            console.log("location: " + loc.location);
+            $scope.$apply(function() {
+              $scope.modalInfo = loc.jobTitle + " " + loc.company + " " + loc.location;
+              $scope.modalLink = loc.detailUrl;
+              $scope.modalJob = loc.jobTitle;
+              $scope.modalCompany = loc.company;
+              $scope.modalLocation = loc.location;
+            });
+            $scope.$apply(function() {});
+            // var stuffInModal = angular.element(document.querySelector('#modal'));
+            // stuffInModal.append($scope.modalInfo);
+            console.log($scope.modalInfo);
+            //save job title, company name, and link.
+            //save address
+          });
+        }
     }
 
     $scope.locationsRequest = {

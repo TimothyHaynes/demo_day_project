@@ -80,8 +80,12 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
         marker.addListener('click', function(){
           console.log('You Clicked Me! Yay!!!!');
           console.log("location: " + loc.location);
-          $scope.$apply(function() {$scope.modalInfo = loc.jobTitle + " " + loc.company + " " + loc.location;
-          $scope.modalLink = loc.detailUrl
+          $scope.$apply(function() {
+            $scope.modalInfo = loc.jobTitle + " " + loc.company + " " + loc.location;
+            $scope.modalLink = loc.detailUrl
+            $scope.modalJob = loc.jobTitle;
+            $scope.modalCompany = loc.company;
+            $scope.modalLocation = loc.location;
           });
           $scope.$apply(function() {})
           // var stuffInModal = angular.element(document.querySelector('#modal'));
@@ -171,21 +175,21 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
             console.log("counter: " + counter)
             console.log($scope.items[counter]);
             doTheThing($scope.items[counter]);
-            
+
             counter++;
           },210)
-          
+
             clearInterval(interval);
-            
-          
+
+
         })();
         //setTimeout( function() {
           //for(var j = 0; j < 9; j++) {
-            
+
           //};
         //}, 1000)
-        
-        
+
+
       //}//end forloop
     }//end GetLocations experimental
 

@@ -13,14 +13,17 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
 
    function initMap(){
     console.log("init Map starts");
-   $scope.globalMap = new google.maps.Map(document.getElementById('job-map'), {
-       center: {
-           lat: 42.2814,
-           lng: -83.7483
-       },
-       scrollwheel: true,
-       zoom: 10
-       });
+    angular.element(document).ready(()=>{
+      $scope.globalMap = new google.maps.Map(document.getElementById('job-map'), {
+          center: {
+              lat: 42.2814,
+              lng: -83.7483
+          },
+          scrollwheel: true,
+          zoom: 10
+          });
+    });
+
     }
 
     //The Dice API returns an array (currently)called $scope.items
@@ -85,13 +88,18 @@ app.controller("jobListCtrl", function($http, $scope, inputFactory, diceFactory)
     //then place
 
     function checkRad(place, loc) {
-      var rad = 0;
+      var rad = 1;
       var iLat = place.geometry.location.lat();
-      var iLon = place.geometry.location.lon();
-      var centerLat = loc.location.lat();
-      var centerLon = loc.location.lon();
-      console.log(iLat + centerLat);
-      if (iLat <= centerLat + rad && iLat >= centerLat - rad && iLon <= centerLon + rad && iLon > centLon - rad) {
+      console.log(loc);
+      var iLon = place.geometry.location.lng();
+
+      var centerLat = $scope.locationsRequest.location.lat()
+      var centerLon = $scope.locationsRequest.location.lng()
+      var x = $scope.locationsRequest.x;
+      var rad = $scope.searchObject.rad;
+      console.log($scope.searchObject.rad);
+
+      if (iLat <= centerLat + (69.172 / rad) && iLat >= centerLat - (69.172 / rad) && iLon <= centerLon + (1 / (x / rad)) && iLon > centerLon - (1 / (x / rad))) {
         return true;
       } else {
         return false;

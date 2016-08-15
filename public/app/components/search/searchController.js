@@ -9,7 +9,8 @@ app.controller("searchOutputCtrl", function($scope, inputFactory) {
 //*****for use with express query
 app.controller("searchCtrl", function($http, $scope, inputFactory, $location) {
 
-  $scope.search = function(searchInput) {
+  	$scope.search = function(searchInput) {
+  		searchInput.pgcnt = "150";
       inputFactory.saveObject(searchInput);
       var options = inputFactory.returnObject();
       console.log(options);

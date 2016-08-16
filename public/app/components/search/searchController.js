@@ -14,5 +14,5 @@ app.controller("searchCtrl", function($http, $scope, inputFactory, $location) {
       var options = inputFactory.returnObject();
       console.log(options);
       // $location.path('/jobList');
-  }
+  };
 });

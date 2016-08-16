@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var r = require('./request');
 var http = require('http');
 var diceCreate = require('./diceCreate');
+var moreResults = require('./moreResults');
 
 //configure app to use bodyParser()
 //this will let us get data from POST
@@ -53,13 +54,14 @@ var router = express.Router();
       console.log(resp);
       res.json(resp);
     } else {
-      console.log("object is not empty");
-      var dice = diceCreate(req.body);
-      console.log(dice);
-      r(dice, function(result) {
-        resp = {result, body};
-        res.json({result, body});
-      });
+      moreResults(req, res);
+      // console.log("object is not empty");
+      // var dice = diceCreate(req.body);
+      // console.log(dice);
+      // r(dice, function(result) {
+      //   resp = {result, body};
+      //   res.json({result, body});
+      // });
   };
     // if (body.keys(obj) !== 0) {}
 

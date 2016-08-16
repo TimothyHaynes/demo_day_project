@@ -3,10 +3,15 @@ var app = angular.module('myApp');
 app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, diceFactory) {
    $scope.searchObject = inputFactory.returnObject();
    console.log($scope.searchObject);
+   
+   $scope.allDiceResults=[];
 
    diceFactory.post($scope.searchObject, (response)=>{
     console.log(response);
     $scope.items = response.result.resultItemList;
+    for(var i = 0; i < $scope.items.length; i++){
+      $scope.allDiceResults.push($scope.items[i]);
+    }
     $scope.searchObject = response.body;
     doTheMap();
   });

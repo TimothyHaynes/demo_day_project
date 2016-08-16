@@ -10,7 +10,6 @@ app.controller("searchOutputCtrl", function($scope, inputFactory) {
 app.controller("searchCtrl", function($http, $scope, inputFactory, $location) {
 
   	$scope.search = function(searchInput) {
-  		searchInput.pgcnt = "150";
       inputFactory.saveObject(searchInput);
       var options = inputFactory.returnObject();
       console.log(options);

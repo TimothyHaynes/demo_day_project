@@ -22,7 +22,7 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
               lng: -83.7483
           },
           scrollwheel: false,
-          zoom: 10
+          zoom: 13
           });
     });
 

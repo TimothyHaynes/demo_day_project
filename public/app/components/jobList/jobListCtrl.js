@@ -1,6 +1,8 @@
 var app = angular.module('myApp');
 
 app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, diceFactory) {
+    $scope.$watch(function() {return inputFactory.returnObject()}, function(value) {
+      // if(Object.keys(value).length > 0) {
    $scope.searchObject = inputFactory.returnObject();
    console.log($scope.searchObject);
 
@@ -220,6 +222,8 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
         getCenter();
 
     }
+  // }
+}, true);
 
 });
 

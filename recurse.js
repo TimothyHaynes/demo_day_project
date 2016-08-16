@@ -1,21 +1,35 @@
-{let superArray= [];
-  function IterateOver(dice, iterator, callback){
+{
+  module.exports = function IterateOver(dice, iterator, callback){
+    // console.log("Iterator");
+    loops = 3;
+    var superArray = [];
     var doneCount = 0;
     var options = dice;
 
     function report(data) {
-      superArray.concat(data.resultItemList);
-      options.path = data.nextUrl;
+      // console.log("data");
+      // console.log(data.resultItemList[0]);
+      superArray = superArray.concat(data.resultItemList);
+      // console.log(superArray);
+      // console.log("superArray");
+      // console.log(superArray);
+      // options.path = data.nextUrl;
       doneCount++;
 
-      if (doneCount === numRequests) {
+      if (doneCount === loops) {
         callback(superArray);
       }
     }
 
-    for (var i = 1; i < 10; i++) {
-
-      iterator(options, report);
+    for (var i = 1; i < 15; i++) {
+      // console.log(i);
+      var improv = Object.assign({}, dice);
+      improv.path += ('&page=' + i);
+      // console.log("improv: ");
+      // console.log(improv);
+      // improv.path += ('&page=' + i);
+      iterator(improv, report);
+      improv.path = options.path;
     }
   }
 }
@@ -23,11 +37,6 @@
 
 //r takes options and a callback
   //the callback gets passed the object response from DICE.
-  var dice = diceCreate(body);
-  IterateOver(dice, r(options, report(data)),
-   function(data) {
-    res.json({data, body});
-  });
 
 //call IterateOver
 //set dice to options var

@@ -6,7 +6,7 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
 
    diceFactory.post($scope.searchObject, (response)=>{
     console.log(response);
-    $scope.items = response.result.resultItemList;
+    $scope.items = response.data;
     $scope.searchObject = response.body;
     doTheMap();
   });

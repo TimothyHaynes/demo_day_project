@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var r = require('./request');
 var http = require('http');
 var diceCreate = require('./diceCreate');
-
+var IterateOver = require('./recurse');
 //configure app to use bodyParser()
 //this will let us get data from POST
 //parses urlencoded
@@ -52,11 +52,14 @@ var router = express.Router();
     } else {
       console.log("object is not empty");
       var dice = diceCreate(req.body);
-      console.log(dice);
-      r(dice, function(result) {
-        resp = {result, body};
-        res.json({result, body});
+      // console.log(dice);
+      IterateOver(dice, r,
+       function(data) {
+         console.log('console.log');
+         console.log(data);
+        res.json({data: data, body});
       });
+
   };
     // if (body.keys(obj) !== 0) {}
 

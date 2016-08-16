@@ -6,7 +6,7 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
    $scope.searchObject = inputFactory.returnObject();
    console.log($scope.searchObject);
 
-   diceFactory.post($scope.searchObject, (response)=>{
+   diceFactory.post($scope.searchObject, function(response) {
     console.log(response);
     $scope.items = response.result.resultItemList;
     $scope.searchObject = response.body;
@@ -15,7 +15,7 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
 
    function initMap(){
     console.log("init Map starts");
-    angular.element(document).ready(()=>{
+    angular.element(document).ready(function(){
       $scope.globalMap = new google.maps.Map(document.getElementById('job-map'), {
           center: {
               lat: 42.2814,
@@ -94,8 +94,8 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
       console.log(loc);
       var iLon = place.geometry.location.lng();
 
-      var centerLat = $scope.locationsRequest.location.lat()
-      var centerLon = $scope.locationsRequest.location.lng()
+      var centerLat = $scope.locationsRequest.location.lat();
+      var centerLon = $scope.locationsRequest.location.lng();
       var x = $scope.locationsRequest.x;
       var rad = $scope.searchObject.rad;
       console.log($scope.searchObject.rad);
@@ -182,14 +182,14 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
           var counter = 0;
           $interval(function(){
             if (counter >= $scope.items.length){
-              return
-            };
-            console.log("counter: " + counter)
+              return;
+            }
+            console.log("counter: " + counter);
             console.log($scope.items[counter]);
             doTheThing($scope.items[counter]);
 
             counter++;
-          },415, $scope.items.length)
+          },415, $scope.items.length);
             //clearInterval(interval);
             $interval.cancel();
             // $scope.totalResults = resultCounter;

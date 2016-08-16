@@ -50,8 +50,10 @@ var router = express.Router();
     console.log("req.body:" + req.body);
     if(Object.keys(body).length === 0) {
       console.log("default response");
-      console.log(resp);
-      res.json(resp);
+      if (resp) {
+        console.log(resp);
+        res.json(resp);
+      }
     } else {
       console.log("object is not empty");
       var dice = diceCreate(req.body);

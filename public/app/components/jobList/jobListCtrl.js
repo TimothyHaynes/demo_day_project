@@ -115,8 +115,13 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
           // var infoWindow = new google.maps.infoWindow ({
           //   content: contentString
           // });
+
+          var linkUrl = '<a href="' + loc.detailUrl + '" target=\"_blank\">Apply Here</a>';
+          var content = '<div id="iw_container">'+'<div id="iw_title">' + loc.jobTitle + '</div>' + '<div class="iw_content">' + loc.company + '<br>' + loc.location + '<br>' + linkUrl + '</div>'+'</div>';
+
+
           var myModal = new google.maps.InfoWindow({
-            content: loc.company + "<br>" + loc.jobTitle
+            content: content
           });
 
           var marker = new google.maps.Marker({
@@ -129,6 +134,8 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
               },
               infowindow: myModal
           });
+
+
           $scope.totalResults++;
           marker.addListener('click', function(){
             console.log('You Clicked Me! Yay!!!!');

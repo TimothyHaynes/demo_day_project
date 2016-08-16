@@ -113,8 +113,11 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
           // var infoWindow = new google.maps.infoWindow ({
           //   content: contentString
           // });
+          var content = '<div id="iw_container">'+'<div class="iw_title">' + loc.jobTitle + '<div class="iw_content">' + loc.company + '<br>' + loc.location + '</div>'+'</div>';
+
+
           var myModal = new google.maps.InfoWindow({
-            content: loc.company + "<br>" + loc.jobTitle
+            content: content
           });
 
           var marker = new google.maps.Marker({

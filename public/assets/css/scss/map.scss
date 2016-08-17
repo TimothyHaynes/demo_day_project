@@ -1,52 +1,40 @@
 #job-map {
-    width: 800px;
-    height: 500px;
-
+  width: 800px;
+  height: 500px;
+  margin: auto;
 }
 
-#something
-{
-  margin-left:10px;
-}
 
-#modal
-{
-  width: 400px;
-  height:300px;
+
+
+#iw_container #iw_title {
+  font-family: 'Poiret One', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  padding: 10px;
+  background-color: #e74c3c;
+  color: white;
+  margin: 1px;
   border: solid black 2px;
-  border-radius: 10px;
-  margin-left: 20px;
-}
+  border-radius: 2px;
+  /* In accordance with the rounding of the default infowindow corners. */ }
 
-#modal p, a
+#iw_title
 {
-  font-family: "Poiret One", cursive;
-  font-size: 24px;
+  margin: auto;
 }
 
-#modal a
+.iw_content
 {
-  color: #e74c3c
+  font-family: 'Poiret One', sans-serif;
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
 }
 
-#iw-container  .iw-title {
-   font-family: 'Open Sans Condensed', sans-serif;
-   font-size: 22px;
-   font-weight: 400;
-   padding: 10px;
-   background-color: #48b5e9;
-   color: white;
-   margin: 1px;
-   border-radius: 2px 2px 0 0; /* In accordance with the rounding of the default infowindow corners. */
-}
-
-
-.gm-style-iw {
+.gm_style_iw {
    width: 350px !important;
    top: 0 !important;
    left: 0 !important;
-   background-color: #fff;
-   box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
-   border: 1px solid rgba(72, 181, 233, 0.6);
    border-radius: 2px 2px 0 0;
 }

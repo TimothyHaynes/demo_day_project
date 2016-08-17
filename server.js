@@ -48,7 +48,12 @@ var router = express.Router();
   router.post('/jobs', function(req, res) {
     var body = req.body;
     if(Object.keys(body).length === 0) {
-      res.json(resp);
+
+      if (resp) {
+        console.log(resp);
+        res.json(resp);
+      }
+
     } else {
       console.log("object is not empty");
       var dice = diceCreate(req.body);

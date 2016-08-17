@@ -1,10 +1,12 @@
 var app = angular.module('myApp');
 
 app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, diceFactory) {
+    $scope.$watch(function() {return inputFactory.returnObject()}, function(value) {
+      // if(Object.keys(value).length > 0) {
    $scope.searchObject = inputFactory.returnObject();
    console.log($scope.searchObject);
 
-   diceFactory.post($scope.searchObject, (response)=>{
+   diceFactory.post($scope.searchObject, function(response) {
     console.log(response);
     $scope.items = response.data;
     $scope.searchObject = response.body;
@@ -13,14 +15,14 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
 
    function initMap(){
     console.log("init Map starts");
-    angular.element(document).ready(()=>{
+    angular.element(document).ready(function(){
       $scope.globalMap = new google.maps.Map(document.getElementById('job-map'), {
           center: {
               lat: 42.2814,
               lng: -83.7483
           },
           scrollwheel: false,
-          zoom: 10
+          zoom: 13
           });
     });
 
@@ -92,8 +94,8 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
       console.log(loc);
       var iLon = place.geometry.location.lng();
 
-      var centerLat = $scope.locationsRequest.location.lat()
-      var centerLon = $scope.locationsRequest.location.lng()
+      var centerLat = $scope.locationsRequest.location.lat();
+      var centerLon = $scope.locationsRequest.location.lng();
       var x = $scope.locationsRequest.x;
       var rad = $scope.searchObject.rad;
       console.log($scope.searchObject.rad);
@@ -113,8 +115,13 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
           // var infoWindow = new google.maps.infoWindow ({
           //   content: contentString
           // });
+
+          var linkUrl = '<a href="' + loc.detailUrl + '" target=\"_blank\">Apply Here</a>';
+          var content = '<div id="iw_container">'+'<div id="iw_title">' + loc.jobTitle + '</div>' + '<div class="iw_content">' + loc.company + '<br>' + loc.location + '<br>' + linkUrl + '</div>'+'</div>';
+
+
           var myModal = new google.maps.InfoWindow({
-            content: loc.company + "<br>" + loc.jobTitle
+            content: content
           });
 
           var marker = new google.maps.Marker({
@@ -127,6 +134,8 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
               },
               infowindow: myModal
           });
+
+
           $scope.totalResults++;
           marker.addListener('click', function(){
             console.log('You Clicked Me! Yay!!!!');
@@ -173,14 +182,14 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
           var counter = 0;
           $interval(function(){
             if (counter >= $scope.items.length){
-              return
-            };
-            console.log("counter: " + counter)
+              return;
+            }
+            console.log("counter: " + counter);
             console.log($scope.items[counter]);
             doTheThing($scope.items[counter]);
 
             counter++;
-          },415, $scope.items.length)
+          },415, $scope.items.length);
             //clearInterval(interval);
             $interval.cancel();
             // $scope.totalResults = resultCounter;
@@ -220,6 +229,8 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
         getCenter();
 
     }
+  // }
+}, true);
 
 });
 

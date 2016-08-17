@@ -2,6 +2,9 @@
   width: 100%;
   margin: 0 auto; }
 
+.navbar-header {
+  margin-left: 10px; }
+
 span {
   font-size: 1em; }
 

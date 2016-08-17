@@ -21,10 +21,11 @@
       }
     }
 
-    for (var i = 1; i < 15; i++) {
+    for (var i = 1; i < loops + 1; i++) {
       // console.log(i);
       var improv = Object.assign({}, dice);
       improv.path += ('&page=' + i);
+      console.log(improv);
       // console.log("improv: ");
       // console.log(improv);
       // improv.path += ('&page=' + i);

@@ -1,0 +1,29 @@
+#listings {
+	height: 500px;
+	overflow: scroll;
+}
+
+.listing {
+	border: 2px solid black;
+	border-radius: 2px;
+	text-align: center;
+	font-family: 'Poiret One', sans-serif;
+	margin-bottom: 5px;
+	
+}
+
+.listing h3 {
+  	font-size: 18px;
+  	font-weight: 400;
+ 	padding: 10px;
+ 	background-color: #e74c3c;
+ 	color: white;
+ 	margin: 1px;
+}
+
+.listing h4, .listing p {
+	font-family: 'Poiret One', sans-serif;
+	font-size: 14px;
+	padding: 10px;
+	text-align: center;
+}

@@ -19,23 +19,36 @@
 		<div class="col-sm-12" id="total-results-display" ng-model="totalResults">Results Found: {{totalResults || 0}}</div>
 	</div>
 
-
-		<div id="job-map">
-
+	<div class="row">
+		<div class="col-sm-8">
+			<div id="job-map">
+			</div>
 		</div>
+		<div class="col-sm-4" id="listings">
+			<div class="listing" ng-repeat="listing in foundListings" ng-click="changeCenter(listing.latlng)">
+					<h3>{{listing.company}}</h3>
+					<span id="h4">{{listing.job}}</span>
+					<br>
+					<span>{{listing.location}}</span>
+					<br>
+					<span><a href="{{listing.link}}" target="_blank">Apply Here</a></span>
+					
+				
+			</div>
+		</div>
+	</div>
 
 
 
 
-
-<div>
+<!-- <div>
 	<ul>
 		<li ng-repeat="item in items">
 			{{item.company}}
 			{{item.jobTitle}}
 			{{item.location}}
 		</li>
-	</ul>
+	</ul> -->
 </div>
 
 

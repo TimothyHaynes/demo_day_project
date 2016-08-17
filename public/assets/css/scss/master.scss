@@ -1,6 +1,11 @@
 span {
   font-size: 1em;
 }
+
+#job-map {
+  margin: auto;
+}
+
 @media (max-width: 600px) {
   body {
     display: block;
@@ -21,11 +26,6 @@ span {
 
   span {
     font-size: .7em;
-  }
-  #job-map {
-      width: 220px;
-      height: 400px;
-
   }
 
   li {

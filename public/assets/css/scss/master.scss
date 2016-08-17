@@ -3,13 +3,17 @@
   margin: 0 auto;
 }
 
+.navbar-header {
+  margin-left: 10px;
+}
+
 span {
   font-size: 1em;
 }
 
 
 #job-map {
-  margin: auto; 
+  margin: auto;
 }
 
 .col-sm-4 {
@@ -17,6 +21,8 @@ span {
 }
 
 @media (max-width: 600px) {
+
+
   body {
     display: block;
     font-family: arial;

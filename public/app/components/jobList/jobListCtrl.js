@@ -106,7 +106,16 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
         return false;
       }
     }
+
+    $scope.changeCenter = function(newPlace){
+      console.log("trying to set new center")
+      $scope.globalMap.panTo(newPlace);
+      $scope.globalMap.setZoom(15);
+    }
+
+    $scope.foundListings = [];
     $scope.totalResults = 0;
+
     function addMarker(place, loc){
       console.log("addMarker starts");
       console.log(place.geometry.location.lat());
@@ -158,6 +167,17 @@ app.controller("jobListCtrl", function($http, $scope, $interval, inputFactory, d
             this.infowindow.open($scope.globalMap, this);
 
           });
+
+          $scope.foundListings.push({
+            link: loc.detailUrl,
+            job: loc.jobTitle,
+            company: loc.company,
+            location: loc.location,
+            latlng: place.geometry.location
+          })
+          console.log($scope.foundListings);
+
+
         }
         // var contentString = "Hello";
     }

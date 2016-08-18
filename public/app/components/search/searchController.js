@@ -10,7 +10,9 @@ app.controller("searchOutputCtrl", function($scope, inputFactory) {
 app.controller("searchCtrl", function($http, $scope, inputFactory, $location) {
 
   	$scope.search = function(searchInput) {
+      if (parseInt(searchInput.city) && searchInput.city.length === 5) {
       var object = {};
+      document.getElementById('zipcode').className = "textInput";
       object.city = searchInput.city;
       object.rad = searchInput.rad;
       object.skill = searchInput.skill;
@@ -19,5 +21,8 @@ app.controller("searchCtrl", function($http, $scope, inputFactory, $location) {
       var options = inputFactory.returnObject();
       console.log(options);
       // $location.path('/jobList');
-  };
+    } else {
+      document.getElementById('zipcode').className = "required";
+    }
+    };
 });

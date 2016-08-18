@@ -1,6 +1,7 @@
 {
   module.exports = function IterateOver(dice, iterator, callback){
     // console.log("Iterator");
+    // this controls the amount of dice pages we pull from
     loops = 3;
     var superArray = [];
     var doneCount = 0;

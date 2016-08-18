@@ -46,22 +46,23 @@ var router = express.Router();
 
 { let resp;
   router.post('/jobs', function(req, res) {
+    console.log(req.body);
     var body = req.body;
     if(Object.keys(body).length === 0) {
 
       if (resp) {
-        console.log(resp);
+        // console.log(resp);
         res.json(resp);
       }
 
     } else {
-      console.log("object is not empty");
+      // console.log("object is not empty");
       var dice = diceCreate(req.body);
       // console.log(dice);
       IterateOver(dice, r,
        function(data) {
-         console.log('console.log');
-         console.log(data);
+        //  console.log('console.log');
+        //  console.log(data);
         res.json({data: data, body});
       });
 
@@ -71,14 +72,6 @@ var router = express.Router();
   });
 }
 
-router.get('/reddit', function(req, res) {
-    r(reddit, function(result) {
-        // var jsonified = JSON.parse(result);
-        // console.log("Resulting: " + result);
-        res.json(result);
-
-    });
-});
 //we will add more API routes here
 
 //REGISTER OUR ROUTES

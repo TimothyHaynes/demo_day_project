@@ -1,11 +1,25 @@
 .row-fluid ul {
   list-style-type: none; }
 
-.thumbnail h3, p {
-  text-align: center; }
+.thumbnail h2, p {
+  text-align: center;
+  font-family: "Poiret One", cursive; }
+
+.thumbnail p {
+  font-size: 18px; }
+
+.thumbnail h2 {
+  font-weight: bolder; }
 
 .thumbnail img {
   border-radius: 150px; }
+
+.thumbnail a {
+  color: #e74c3c; }
+
+.thumbnail {
+  border-color: #e74c3c;
+  height: 400px; }
 
 .container-fluid {
   padding-right: 40px;

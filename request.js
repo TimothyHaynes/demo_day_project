@@ -2,8 +2,6 @@ var http = require('http');
 module.exports = function redditInfo(options, callback){
 
   var options = options;
-
-  // console.log(options);
   var body = '';
 
    http.request(options, (res) => {

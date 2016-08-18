@@ -34,7 +34,7 @@ form {
     font-family: arial;
     border-radius: 5px;
     font-size: 2em; }
-  .textInput {
+  .textInput, .required {
     margin: 0 auto;
     display: block;
     font-size: 15px; }

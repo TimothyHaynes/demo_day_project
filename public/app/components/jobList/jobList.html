@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		<div class="col-sm-4" id="listings">
-			<div class="listing" ng-repeat="listing in foundListings" ng-click="changeCenter(listing.latlng)">
+			<div class="listing" ng-repeat="listing in foundListings| orderBy:'company'" ng-click="changeCenter(listing.latlng)">
 					<h3>{{listing.company}}</h3>
 					<span id="h4">{{listing.job}}</span>
 					<br>

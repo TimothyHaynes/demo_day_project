@@ -55,6 +55,39 @@ form button {
   font-size: 1.5em;
 }
 
+label {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  padding-left: 20px;
+  margin-right: 15px;
+  font-size: 13px;
+}
+
+input[type=radio] {
+  display: none;
+}
+
+label:before {
+  content: "";
+  display: inline-block;
+
+  width: 16px;
+  height: 16px;
+
+  margin-right: 10px;
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  border: 1px solid #c0392b;
+  border-radius: 3px;
+  // box-shadow: inset 0px 2px 3px 0px
+}
+
+input[type=radio]:checked + label:before {
+  background-color: #c0392b;
+}
+
 .navbar-default {
   margin: 0 auto;
   background-color: #e74c3c;

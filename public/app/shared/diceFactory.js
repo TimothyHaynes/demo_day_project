@@ -5,11 +5,8 @@ app.factory('diceFactory', function($http) {
 
   return {
     post: function(options, callback) {
-      console.log('posting');
       $http.post('/api/jobs', options)
       .then(function successCallback(response) {
-        console.log('response');
-        console.log(response);
         diceResponse = response.data;
         callback(diceResponse);
       },

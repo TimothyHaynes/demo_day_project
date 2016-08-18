@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <section id="search" ng-controller="searchCtrl">
-  <!-- <h1>Uncommuter</h1> -->
   <form ng-init="searchInput.rad=40">
     <input class="textInput" type="text" placeholder="Street Address" ng-model="searchInput.street_address"/>
     <input class="textInput" type="text" placeholder="Job Keyword" ng-model="searchInput.skill"/>
@@ -32,32 +31,7 @@
 					<span>{{listing.location}}</span>
 					<br>
 					<span><a href="{{listing.link}}" target="_blank">Apply Here</a></span>
-
-
 			</div>
 		</div>
 	</div>
-
-
-
-
-<!-- <div>
-	<ul>
-		<li ng-repeat="item in items">
-			{{item.company}}
-			{{item.jobTitle}}
-			{{item.location}}
-		</li>
-	</ul> -->
 </div>
-
-
-<!-- <div ng-controller="searchOutputCtrl">
-	{{searchOutput.zipcode}}
-	{{searchOutput.job_title}}
-	{{searchOutput.street_address}}
-</div> -->
-
-
-
-<!-- this is our map with the markers for the area near their address and list of job postings-->

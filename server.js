@@ -51,29 +51,19 @@ var router = express.Router();
     if(Object.keys(body).length === 0) {
 
       if (resp) {
-        // console.log(resp);
         res.json(resp);
       }
 
     } else {
-      // console.log("object is not empty");
       var dice = diceCreate(req.body);
-      // console.log(dice);
       IterateOver(dice, r,
        function(data) {
-        //  console.log('console.log');
-        //  console.log(data);
         res.json({data: data, body});
       });
 
   };
-    // if (body.keys(obj) !== 0) {}
-
   });
 }
-
-//we will add more API routes here
-
 //REGISTER OUR ROUTES
 //all of our routes will be prefixed with /API
 app.use('/api', router);

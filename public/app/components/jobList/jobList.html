@@ -4,7 +4,7 @@
   <form ng-init="searchInput.rad=40">
     <input class="textInput" type="text" placeholder="Street Address" ng-model="searchInput.street_address"/>
     <input class="textInput" type="text" placeholder="Job Keyword" ng-model="searchInput.skill"/>
-    <input class="textInput" type="text" placeholder="Zipcode" ng-model="searchInput.city"/>
+    <input class="textInput" type="text" placeholder="Zipcode" id="zipcode" ng-model="searchInput.city"/>
     <input class="radInput" type="radio" name="rad" value="3" ng-model="searchInput.rad"><span>3 miles</span></input>
     <input class="radInput" type="radio" name="rad" value="5" ng-model="searchInput.rad"><span>5 miles</span></input>
     <input class="radInput" type="radio" name="rad" value="10" ng-model="searchInput.rad"><span>10 miles</span></input>
@@ -15,7 +15,7 @@
 
 <div id="container">
 	<div class="row">
-		<div class="col-sm-12" id="total-results-display" ng-model="totalResults"> 
+		<div class="col-sm-12" id="total-results-display" ng-model="totalResults">
 	</div>
 
 	<div class="row">

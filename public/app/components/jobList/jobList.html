@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <section id="search" ng-controller="searchCtrl">
-  <h1>Uncommuter</h1>
+  <!-- <h1>Uncommuter</h1> -->
   <form ng-init="searchInput.rad=40">
     <input class="textInput" type="text" placeholder="Street Address" ng-model="searchInput.street_address"/>
     <input class="textInput" type="text" placeholder="Job Keyword" ng-model="searchInput.skill"/>
@@ -20,7 +20,7 @@
 
 <div id="container">
 	<div class="row">
-		<div class="col-sm-12" id="total-results-display" ng-model="totalResults">Results Found: {{totalResults || 0}}</div>
+		<div class="col-sm-12" id="total-results-display" ng-model="totalResults"> 
 	</div>
 
 	<div class="row">
@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		<div class="col-sm-4" id="listings">
-			<div class="listing" ng-repeat="listing in foundListings" ng-click="changeCenter(listing.latlng)">
+			<div class="listing" ng-repeat="listing in foundListings| orderBy:'company'" ng-click="changeCenter(listing.latlng)">
 					<h3>{{listing.company}}</h3>
 					<span id="h4">{{listing.job}}</span>
 					<br>

@@ -3,14 +3,9 @@
   margin: 0 auto;
 }
 
-.navbar-header {
-  margin-left: 10px;
-}
-
 span {
   font-size: 1em;
 }
-
 
 #job-map {
   margin: auto;
@@ -20,9 +15,26 @@ span {
   margin: auto;
 }
 
+form {
+  margin-top: 3em;
+}
+
+
 @media (max-width: 600px) {
-
-
+  #job-map {
+    height: 300px;
+  }
+  form button {
+    font-size: 1.5em;
+  }
+  .container-fluid h1 {
+    font-size: 2.5em;
+  }
+  .navbar-header {
+    text-align: center;
+    margin-left: 0px!important;
+    margin-right: 0px!important
+  }
   body {
     display: block;
     font-family: arial;
@@ -47,4 +59,4 @@ span {
   li {
     font-size: .75em;
   }
-  }
+}

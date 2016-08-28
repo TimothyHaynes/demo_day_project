@@ -1,12 +1,16 @@
 <section id="search" ng-controller="searchCtrl">
   <form ng-init="searchInput.rad=40">
-    <input type="text" placeholder="Street Address" ng-model="searchInput.street_address"/>
-    <input type="text" placeholder="Job Keyword" ng-model="searchInput.skill"/>
-    <input type="text" placeholder="Zipcode" ng-model="searchInput.city"/>
-    <input type="radio" name="rad" value="3" ng-model="searchInput.rad">3 miles</input>
-    <input type="radio" name="rad" value="5" ng-model="searchInput.rad">5 miles</input>
-    <input type="radio" name="rad" value="10" ng-model="searchInput.rad">10 miles</input>
-    <input type="radio" name="rad" ng-checked="true" value="40" ng-model="searchInput.rad" checked>40 miles</input>
+    <div class="textSearchInputs">
+      <input type="text" placeholder="Street Address" ng-model="searchInput.street_address"/>
+      <input type="text" placeholder="Job Keyword" ng-model="searchInput.skill"/>
+      <input type="text" placeholder="Zipcode" ng-model="searchInput.city"/>
+    </div>
+    <div class="radioSelectors">
+      <input type="radio" name="rad" value="3" ng-model="searchInput.rad">3 miles</input>
+      <input type="radio" name="rad" value="5" ng-model="searchInput.rad">5 miles</input>
+      <input type="radio" name="rad" value="10" ng-model="searchInput.rad">10 miles</input>
+      <input type="radio" name="rad" ng-checked="true" value="40" ng-model="searchInput.rad" checked>40 miles</input>
+    </div>
     <button type="button" ng-click="search(searchInput)">Uncommute</button>
   </form>
 </section>

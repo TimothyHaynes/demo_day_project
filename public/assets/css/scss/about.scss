@@ -32,10 +32,52 @@
 {
   border-color: #e74c3c;
   height: 400px;
+  width: 100%;
+  margin-top: 20px;
+  margin-left: -20px;
+  margin-right: auto !important;
+  padding: 5%;
 }
 
-.container-fluid {
+.thumbnails {
+  margin-left: 0 auto !important;
+  margin-right: 0 auto !important;
+}
+
+.container {
   padding-right: 40px;
   padding-left: 40px;
   margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  .thumbnail
+  {
+    height: 500px;
+    width: 295px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5%;
+  }
+  .thumbnails {
+    margin-left: -40px !important;
+    margin-right: auto !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .thumbnail
+  {
+    height: 500px;
+    width: 250px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10%;
+  }
+  .thumbnails {
+    margin-left: -40px !important;
+    margin-right: auto !important;
+  }
 }
